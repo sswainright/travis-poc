@@ -10,7 +10,7 @@ before_deploy:
   -v '\[')
 
 after_success:
-  - bash deployment/docker_deploy.sh
+  - sudo deployment/docker_deploy.sh
 
 deploy:
   provider: releases
