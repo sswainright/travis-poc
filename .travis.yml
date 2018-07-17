@@ -5,9 +5,10 @@ services:
 - docker
 
 before_deploy:
-- mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
-- export POM_VERSION=$(mvn help:evaluate -N -Dexpression=project.version|grep
-  -v '\[')
+  - chmod +x ./deployment/docker_deploy.sh
+  - mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
+  - export POM_VERSION=$(mvn help:evaluate -N -Dexpression=project.version|grep
+    -v '\[')
 
 deploy:
   - provider: releases
@@ -20,9 +21,9 @@ deploy:
       all_branches: true
     name: POM_VERSION
 
-#  - provider: script
-#    script: bash deployment/docker_deploy.sh
-#    on:
-#      repo: sswainright/travis-poc
-#      all_branches: true
+  - provider: script
+    script: bash ./deployment/docker_deploy.sh
+    on:
+      repo: sswainright/travis-poc
+      all_branches: true
 
