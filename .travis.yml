@@ -9,9 +9,6 @@ before_deploy:
 - export POM_VERSION=$(mvn help:evaluate -N -Dexpression=project.version|grep
   -v '\[')
 
-after_success:
-  - sudo deployment/docker_deploy.sh
-
 deploy:
   - provider: releases
     api_key:
@@ -26,5 +23,6 @@ deploy:
   - provider: script
     script: bash deployment/docker_deploy.sh
     on:
+      repo: sswainright/travis-poc
       all_branches: true
 
