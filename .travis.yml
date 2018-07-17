@@ -8,8 +8,6 @@ before_deploy:
 - mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
 - export POM_VERSION=$(mvn help:evaluate -N -Dexpression=project.version|grep
   -v '\[')
-- script:
--
 
 deploy:
   provider: releases
