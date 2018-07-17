@@ -20,9 +20,9 @@ deploy:
       all_branches: true
     name: POM_VERSION
 
-  - provider: script
-    script: bash deployment/docker_deploy.sh
-    on:
-      repo: sswainright/travis-poc
-      all_branches: true
+#  - provider: script
+#    script: bash deployment/docker_deploy.sh
+#    on:
+#      repo: sswainright/travis-poc
+#      all_branches: true
 
