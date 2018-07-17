@@ -9,6 +9,9 @@ before_deploy:
 - export POM_VERSION=$(mvn help:evaluate -N -Dexpression=project.version|grep
   -v '\[')
 
+after_success:
+  - bash deployment/docker_deploy.sh
+
 deploy:
   provider: releases
   api_key:
@@ -20,8 +23,3 @@ deploy:
     branch: cs-472
   name: POM_VERSION
 
-after_deploy:
-  provider: script
-  script: bash deployment/docker_deploy.sh
-  on:
-    branch: cs-472
