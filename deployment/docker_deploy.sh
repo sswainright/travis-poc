@@ -6,8 +6,8 @@ set -e
 #${DIR}/tools.sh
 #source ${DIR}/environment-variables.sh
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-tools.sh
+echo "Starting Docker Build"
+
 source environment-variables.sh
 
 # Make sure we are in the right path
