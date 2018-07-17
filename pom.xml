@@ -20,6 +20,24 @@
         <mainClass>sswainright.TravisPocApplication</mainClass>
     </properties>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>authentect-repo</id>
+            <url>s3://authentect-repo/maven/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>authentect-repo</id>
+            <url>s3://authentect-repo/maven/releases/</url>
+        </repository>
+    </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>authentect-repo</id>
+            <url>s3://authentect-repo/maven/releases/</url>
+        </repository>
+    </repositories>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
