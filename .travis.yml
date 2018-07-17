@@ -1,8 +1,16 @@
+sudo: required
 language: java
+
+services:
+- docker
+
 before_deploy:
 - mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
-- export project_version=$(mvn help:evaluate -N -Dexpression=project.version|grep
+- export POM_VERSION=$(mvn help:evaluate -N -Dexpression=project.version|grep
   -v '\[')
+- script:
+-
+
 deploy:
   provider: releases
   api_key:
@@ -12,4 +20,10 @@ deploy:
   on:
     repo: sswainright/travis-poc
     branch: cs-472
-  name: $project_version
+  name: POM_VERSION
+
+after_deploy:
+  provider: script
+  script: bash deployment/docker_deploy.sh
+  on:
+    branch: cs-472
