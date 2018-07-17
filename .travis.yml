@@ -1,5 +1,15 @@
 language: java
-
 before_deploy:
-  - mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
-  - export project_version=$(mvn help:evaluate -N -Dexpression=project.version|grep -v '\[')
+- mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
+- export project_version=$(mvn help:evaluate -N -Dexpression=project.version|grep
+  -v '\[')
+deploy:
+  provider: releases
+  api_key:
+    secure: tp/h+6jYBsRTSiUoaxp4ff9LIbi9d+1NvGxXe9nMjuVbsnJGSzNEpjNu1Pyc0SBsmzbqCdT0C6G9mOmIBpvO7e8CH7tbZcclC9Uoi9z9fdXDrDz799KTmIjnk91gRbFGbsXHQAto+Vm51+RInxUVzibrujBJPTBUjKQa4shbOHKJ65zhM3UXZEBUz0yDhFEpma2xXD/5M9OXz2KAiKFYrpLm5m/tAbWahibqcneJf6Be3zvYgJX5WNHv3izpg+PkehB1Altni/KStM5u+dqiPjSGlW3Ea+DuBY1qBHsNb26WR2FfF8I6+3pkWuR2OezxurFRILURMAiT1wVxkmAb2HfXQzHfZ6DkbxPYFlyx5+dcBg+vvzLYbf/vRmda0SJ6uK8aqXgcm6S4VTKxblmd/eSWMWgdqn6G3PTBWAauLzPofg4OdKWnbodVTwuDdCz9MCIM+BoiCwkqwGmQh+u6m28PyP3qrmNJVwqK4t3CIvjLXSXPYbrdev0bkFA8OSIwxJk03nbxOHWWOw8xhFK5yuV9B4M+ncgt2wveGwrG08mlygzl1TfqoEl2p0QyX4pFhIBWoC56uXWaA26eM0HnnYYEc6HFK6D4zptJCLUbtf/e/tRksT4pl/RJGbFLdQ6E1r39FJ7odekWcEScvsZjdzEEdjGOxjqSMUBmXCtPIjM=
+  file:
+    - target/travis-poc.jar
+  skip_cleanup: true
+  on:
+    repo: sswainright/travis-poc
+  name: $project_version
