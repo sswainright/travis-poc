@@ -24,8 +24,10 @@ deploy:
 #    name: POM_VERSION
 
   - provider: script
-    script: sudo ./deployment/docker_deploy.sh
+    script: sudo ./deployment/deploy-docker.sh
     skip_cleanup: true
     on:
       all_branches: true
 
+after_deploy:
+  - sudo ./deployment/deploy-dev.sh

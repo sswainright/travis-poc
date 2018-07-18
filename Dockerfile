@@ -20,7 +20,9 @@ ADD ./config.yml /var/service/service-config.yml
 ADD ./target/travis-poc.jar /var/service/
 
 CMD [ \
-  "java -jar", \
-  "server", \
-  "/var/service/service-config.yml"\
+    "/usr/bin/java", \
+    "-jar", \
+    "/var/service/travis-poc.jar", \
+    "server", \
+    "/var/service/service-config.yml" \
 ]

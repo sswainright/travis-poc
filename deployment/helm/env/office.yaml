@@ -1,0 +1,9 @@
+namespace: "office"
+
+clusterDns: "dev.eagle.cluster.alitheon.com"
+
+environment:
+  consulEnv: "office"
+
+deployment:
+  replicas: 2

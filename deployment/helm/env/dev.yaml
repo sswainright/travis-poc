@@ -1,0 +1,9 @@
+namespace: "dev"
+
+clusterDns: "dev.eagle.cluster.alitheon.com"
+
+environment:
+  consulEnv: "dev"
+
+deployment:
+  replicas: 1

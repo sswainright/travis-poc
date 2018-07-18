@@ -4,12 +4,10 @@ server:
       port: 8080
   adminConnectors:
     - type: http
-      port: 2011
+      port: 8081
 
 logging:
   level: INFO
-  loggers:
-    sswainright: DEBUG
 
 swagger:
   resourcePackage: sswainright.resources

@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: travis-ingress
+  namespace: {{ .Values.namespace }}
+spec:
+  rules:
+  - host: {{ .Values.namespace }}.manager.api.{{ .Values.clusterDns }}
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: travis-service
+          servicePort: 8080
