@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-printenv
-
 echo "Starting Docker Build"
 
 # Get the shared components
