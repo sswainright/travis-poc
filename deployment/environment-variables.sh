@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
 echo; echo "[+] Setting Up Environment Variables"; echo
 
-TEST_ENV_VAR=travis-poc
+export TEST_ENV_VAR=travis-poc
 echo "$TEST_ENV_VAR"
 
 # Build Variables
