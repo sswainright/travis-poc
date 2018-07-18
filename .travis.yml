@@ -23,6 +23,7 @@ deploy:
 
   - provider: script
     script: chmod +x ./deployment/docker_deploy.sh && ./deployment/docker_deploy.sh
+    skip_cleanup: true
     on:
 #      repo: sswainright/travis-poc
       all_branches: true
