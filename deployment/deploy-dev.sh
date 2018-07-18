@@ -4,7 +4,7 @@ set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Get the shared components
-${DIR}/get-shared-tools.sh
+${DIR}/tools.sh
 #source ${DIR}/shared-environment-variables.sh
 
 ECR_REPO=$(aws ecr get-login --no-include-email | sed 's|.*https://||')
