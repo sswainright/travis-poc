@@ -29,5 +29,8 @@ deploy:
     on:
       all_branches: true
 
-after_deploy:
-  - sudo ./deployment/deploy-dev.sh
+  - provider: script
+    script: sudo ./deployment/deploy-dev.sh
+    skip_cleanup: true
+    on:
+      all_branches: true

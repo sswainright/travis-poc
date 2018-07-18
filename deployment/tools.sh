@@ -82,3 +82,5 @@ if [ ! -f "${HAS_RUN}" ]; then
 
     touch "${HAS_RUN}"
 fi
+
+echo; echo "Tools for build already installed "; echo
