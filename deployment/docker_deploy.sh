@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
 
-echo "Starting Docker Build"
+echo "Starting Docker Build, TAG, and PUSH to AWS ECR"
 
-# Get the shared components
+# Make Sure all the required tools are installed
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ${DIR}/tools.sh
 source ${DIR}/environment-variables.sh
@@ -11,31 +11,25 @@ source ${DIR}/environment-variables.sh
 # Make sure we are in the right path
 cd ${TRAVIS_BUILD_DIR}
 
-##################################################################################
-# SETUP
-##################################################################################
+# Get Version to Tag
 echo "[+] Docker Build ID: ${DOCKER_TAG_VERSION}"
 
-# Deploy to the ECS container registry.
+# Login to ECR and get the Repo
 echo "[+] Logging into AWS ECR"
 export ECR_REPO=$(aws ecr get-login --no-include-email | sed 's|.*https://||')
 eval $(aws ecr get-login --no-include-email | sed 's|https://||')
 
-##################################################################################
-# BUILDING
-##################################################################################
-#cp target/"${JAR}" target/quoting-service.jar
+# BUILD
 echo "[+] Docker build '${TRAVIS_BUILD_DIR} --tag ${DOCKER_TAG_VERSION}'"
 docker build ${TRAVIS_BUILD_DIR} --tag ${DOCKER_TAG_VERSION}
 
-##################################################################################
-# PUSHING
-##################################################################################
+# PUSH Version Tag
 echo "[+] Tagging ${DOCKER_TAG_VERSION} for AWS ECR ${ECR_REPO}/${DOCKER_TAG_VERSION}"
 docker tag ${DOCKER_TAG_VERSION} ${ECR_REPO}/${DOCKER_TAG_VERSION}
 echo "[+] Pushing ${DOCKER_TAG_VERSION} to AWS ECR ${ECR_REPO}"
 docker push ${ECR_REPO}/${DOCKER_TAG_VERSION}
 
+# PUSH LATEST Tag
 echo "[+] Tagging ${DOCKER_TAG_LATEST} for AWS ECR ${ECR_REPO}/${DOCKER_TAG_LATEST}"
 docker tag ${DOCKER_TAG_VERSION} ${ECR_REPO}/${DOCKER_TAG_LATEST}
 echo "[+] Pushing ${DOCKER_TAG_LATEST} to AWS ECR ${ECR_REPO}"
