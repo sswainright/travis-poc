@@ -8,7 +8,7 @@ set -e
 
 echo "Starting Docker Build"
 
-source environment-variables.sh
+source ./environment-variables.sh
 
 # Make sure we are in the right path
 cd ${TRAVIS_BUILD_DIR}
