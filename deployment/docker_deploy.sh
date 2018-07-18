@@ -1,14 +1,12 @@
 #!/bin/bash
 set -e
 
-# Get the shared components
-#DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-#${DIR}/tools.sh
-#source ${DIR}/environment-variables.sh
-
 echo "Starting Docker Build"
 
-source ./environment-variables.sh
+# Get the shared components
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+#${DIR}/tools.sh
+source ${DIR}/environment-variables.sh
 
 # Make sure we are in the right path
 cd ${TRAVIS_BUILD_DIR}
