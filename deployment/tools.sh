@@ -56,7 +56,7 @@ set -e
     kubectl config set-context pipeline-context --cluster=${KUBERNETES_CLUSTER} --user=${KUBERNETES_USER}
     kubectl config use-context pipeline-context
 
-    echo "[+] Verify connectivity"
+    echo "[+] Verify kubectl connectivity"
     kubectl version
 
     ###################################################################
@@ -73,8 +73,8 @@ set -e
         fi
         cp ${TOOLS_PATH}/helm /usr/local/bin
     fi
-#TODO    echo "[+] Verify connectivity"
-#    helm version
+    echo "[+] Verify helm connectivity"
+    helm version
 
     ###################################################################
     # Done
