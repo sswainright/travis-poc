@@ -1,9 +1,7 @@
 #!/bin/bash
 set -e
 
-echo
-echo "[+] Starting Docker Build, TAG, and PUSH to AWS ECR"
-echo
+echo; echo "[+] Starting Docker Build, TAG, and PUSH to AWS ECR"; echo
 
 # Make Sure all the required tools are installed
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -14,14 +12,10 @@ source ${DIR}/environment-variables.sh
 cd ${TRAVIS_BUILD_DIR}
 
 # Get Version to Tag
-echo
-echo "[+] Docker Build ID: ${DOCKER_TAG_VERSION}"
-echo
+echo; echo "[+] Docker Build ID: ${DOCKER_TAG_VERSION}"; echo
 
 # Login to ECR and get the Repo
-echo
-echo "[+] Logging into AWS ECR"
-echo
+echo; echo "[+] Logging into AWS ECR"; echo
 export ECR_REPO=$(aws ecr get-login --no-include-email | sed 's|.*https://||')
 eval $(aws ecr get-login --no-include-email | sed 's|https://||')
 
