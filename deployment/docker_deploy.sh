@@ -25,16 +25,18 @@ eval $(aws ecr get-login --no-include-email | sed 's|https://||')
 # BUILDING
 ##################################################################################
 #cp target/"${JAR}" target/quoting-service.jar
-echo "[+] Docker build"
+echo "[+] Docker build '${TRAVIS_BUILD_DIR} --tag ${DOCKER_TAG_VERSION}'"
 docker build ${TRAVIS_BUILD_DIR} --tag ${DOCKER_TAG_VERSION}
 
 ##################################################################################
 # PUSHING
 ##################################################################################
-echo "[+] Pushing ${DOCKER_TAG_VERSION} to AWS ECR"
+echo "[+] Tagging ${DOCKER_TAG_VERSION} for AWS ECR ${ECR_REPO}/${DOCKER_TAG_VERSION}"
 docker tag ${DOCKER_TAG_VERSION} ${ECR_REPO}/${DOCKER_TAG_VERSION}
+echo "[+] Pushing ${DOCKER_TAG_VERSION} to AWS ECR ${ECR_REPO}"
 docker push ${ECR_REPO}/${DOCKER_TAG_VERSION}
 
-echo "[+] Pushing ${DOCKER_TAG_LATEST} to AWS ECR"
+echo "[+] Tagging ${DOCKER_TAG_LATEST} for AWS ECR ${ECR_REPO}/${DOCKER_TAG_LATEST}"
 docker tag ${DOCKER_TAG_VERSION} ${ECR_REPO}/${DOCKER_TAG_LATEST}
+echo "[+] Pushing ${DOCKER_TAG_LATEST} to AWS ECR ${ECR_REPO}"
 docker push ${ECR_REPO}/${DOCKER_TAG_LATEST}
