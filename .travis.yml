@@ -5,7 +5,7 @@ services:
 - docker
 
 before_deploy:
-  - chmod +x ./deployment/docker_deploy.sh
+  - chmod +x ./deployment/*.sh
   - mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
   - export POM_VERSION=$(mvn help:evaluate -N -Dexpression=project.version|grep
     -v '\[')
