@@ -16,3 +16,4 @@ export DOCKER_TAG_VERSION=$APP_REPOSITORY:$APP_VERSION
 export DOCKER_TAG_LATEST=$APP_REPOSITORY:latest
 export APP_VERSION=$APP_VERSION
 
+# Define kubernetes deployment

@@ -50,11 +50,11 @@ set -e
         cp ${TOOLS_PATH}/kubectl /usr/local/bin
     fi
 
-    echo "[+] Configuring kubectl"
-    kubectl config set-cluster simon365 --server=$KUBERNETES_SERVER --insecure-skip-tls-verify=true
-    kubectl config set-credentials simon365-deployer --token=$KUBERNETES_TOKEN
-    kubectl config set-context bitbucket-pipeline-context --cluster=simon365 --user=simon365-deployer
-    kubectl config use-context bitbucket-pipeline-context
+    echo "TODO [+] Configuring kubectl"
+#    kubectl config set-cluster simon365 --server=$KUBERNETES_SERVER --insecure-skip-tls-verify=true
+#    kubectl config set-credentials simon365-deployer --token=$KUBERNETES_TOKEN
+#    kubectl config set-context bitbucket-pipeline-context --cluster=simon365 --user=simon365-deployer
+#    kubectl config use-context bitbucket-pipeline-context
 
     echo "[+] Verify connectivity"
     kubectl version
