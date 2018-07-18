@@ -1,6 +1,8 @@
 #!/bin/sh
 
-echo "**** Setting Up Environment Variables ****"
+echo
+echo "[+] Setting Up Environment Variables"
+echo
 
 # Build Variables
 export POM_ARTIFACT_NAME=travis-poc
