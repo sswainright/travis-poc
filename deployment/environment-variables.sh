@@ -2,6 +2,11 @@
 
 echo; echo "[+] Setting Up Environment Variables"; echo
 
+printenv
+
+echo ${POM_ARTIFACT_NAME}; echo
+echo ${POM_VERSION}; echo
+
 # Build Variables
 export POM_ARTIFACT_NAME=travis-poc
 export JAR=${POM_ARTIFACT_NAME}-${POM_VERSION}.jar
