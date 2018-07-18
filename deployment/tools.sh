@@ -51,13 +51,13 @@ set -e
     fi
 
     echo "TODO [+] Configuring kubectl"
-#    kubectl config set-cluster simon365 --server=$KUBERNETES_SERVER --insecure-skip-tls-verify=true
-#    kubectl config set-credentials simon365-deployer --token=$KUBERNETES_TOKEN
-#    kubectl config set-context bitbucket-pipeline-context --cluster=simon365 --user=simon365-deployer
-#    kubectl config use-context bitbucket-pipeline-context
-#
-#    echo "[+] Verify connectivity"
-#    kubectl version
+    kubectl config set-cluster ${KUBERNETES_CLUSTER} --server=${KUBERNETES_SERVER} --insecure-skip-tls-verify=true
+    kubectl config set-credentials ${KUBERNETES_USER} --token=${KUBERNETES_TOKEN}
+    kubectl config set-context pipeline-context --cluster=${KUBERNETES_CLUSTER} --user=${KUBERNETES_USER}
+    kubectl config use-context pipeline-context
+
+    echo "[+] Verify connectivity"
+    kubectl version
 
     ###################################################################
     # HELM 
