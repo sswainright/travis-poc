@@ -2,9 +2,6 @@
 
 echo; echo "[+] Setting Up Environment Variables"; echo
 
-export TEST_ENV_VAR=travis-poc
-echo "$TEST_ENV_VAR"
-
 # Build Variables
 export POM_ARTIFACT_NAME=travis-poc
 export JAR=${POM_ARTIFACT_NAME}-${POM_VERSION}.jar
