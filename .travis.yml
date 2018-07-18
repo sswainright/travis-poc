@@ -9,8 +9,8 @@ before_deploy:
   - mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
   - export POM_VERSION=$(mvn help:evaluate -N -Dexpression=project.version|grep
     -v '\[')
-  - sudo ./deployment/docker_deploy.sh
   - sudo ./deployment/environment-variables.sh
+  - sudo ./deployment/tools.sh
 
 deploy:
 #  - provider: releases
