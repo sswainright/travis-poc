@@ -2,10 +2,8 @@
 
 echo; echo "[+] Setting Up Environment Variables"; echo
 
-printenv
-
-echo ${POM_ARTIFACT_NAME}; echo
-echo ${POM_VERSION}; echo
+TEST_ENV_VAR=travis-poc
+echo "$TEST_ENV_VAR"
 
 # Build Variables
 export POM_ARTIFACT_NAME=travis-poc
