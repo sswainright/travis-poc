@@ -5,7 +5,7 @@ echo "Starting Docker Build"
 
 # Get the shared components
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-{DIR}/tools.sh
+${DIR}/tools.sh
 source ${DIR}/environment-variables.sh
 
 # Make sure we are in the right path
