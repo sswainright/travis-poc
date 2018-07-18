@@ -73,7 +73,8 @@ set -e
         fi
         cp ${TOOLS_PATH}/helm /usr/local/bin
     fi
-    helm version
+#TODO    echo "[+] Verify connectivity"
+#    helm version
 
     ###################################################################
     # Done
