@@ -55,9 +55,9 @@ set -e
 #    kubectl config set-credentials simon365-deployer --token=$KUBERNETES_TOKEN
 #    kubectl config set-context bitbucket-pipeline-context --cluster=simon365 --user=simon365-deployer
 #    kubectl config use-context bitbucket-pipeline-context
-
-    echo "[+] Verify connectivity"
-    kubectl version
+#
+#    echo "[+] Verify connectivity"
+#    kubectl version
 
     ###################################################################
     # HELM 
