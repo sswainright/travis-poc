@@ -17,7 +17,7 @@ import javax.ws.rs.core.MediaType;
 public class PocResource {
 
     @GET
-    @Path("/types")
+    @Path("/status")
     @ApiOperation("Get Status")
     public Map<String, String> getStatus() {
         return ImmutableMap.of("status", "up");
