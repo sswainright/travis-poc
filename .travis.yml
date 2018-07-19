@@ -9,8 +9,6 @@ before_deploy:
   - mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
   - export POM_VERSION=$(mvn help:evaluate -N -Dexpression=project.version|grep
     -v '\[')
-#  - sudo ./deployment/tools.sh
-#  - sudo ./deployment/environment-variables.sh
 
 deploy:
 #  - provider: releases
@@ -34,3 +32,9 @@ deploy:
     skip_cleanup: true
     on:
       all_branches: true
+
+  - provider: script
+    script: sudo ./deployment/deploy-office.sh
+    skip_cleanup: true
+    on:
+      branch: master
