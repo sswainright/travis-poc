@@ -1,0 +1,40 @@
+sudo: required
+language: java
+
+services:
+- docker
+
+before_deploy:
+  - chmod +x ./deployment/*.sh
+  - mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
+  - export POM_VERSION=$(mvn help:evaluate -N -Dexpression=project.version|grep
+    -v '\[')
+
+deploy:
+#  - provider: releases
+#    api_key:
+#      secure: VoOkQYLkJqC8bvWd5w8kmgNX/WN1jdtZb+4lpaqSGeL7auP+Zko20IOQCTaFbhnxAjYi0QBGoZQINe1RdJqutfLhKbQymD6uil38TFMQNlZpAzgqEs0GiDVuUURCLiaPEf1qoc8mdBkwdpMNRNYB4l1cpfyWwv2Ah9K8dR5hXgJlibJqksUdnpsi3oD6annyVvrRKaIhEYqki83bjvtCRfxVV9gOXag327Tx9EioOy4m1wpdAomgZ48lkslpl8ptTBsgQGOyTLf1Ilyh+M14TF30gx62fIKoze75n6Mkw1Ku4L4C2o9Yipjnn4f9SPHW16SfHZFIymR7iWxI4qW54E1GWkikivtjr1NT33yOOZ+Y1OiXnwDiCcNpf7SozuXH9XMKgBv3kCrXsx4FyzIVgE7M0HVuIb6GGsyRgBSQRgmkfQGzuYaMPhB/j3xJqDPR2IYGABAr1u6l65xJdtN1FlA0NB1xidu8uHa1xSMA3HT+mX8J+5iBoDb460l/zhZHGsv11SQI7cnnrXVre5Qi6U88rBbwI66ywrU4IkgPwJYpgbHL6LcerLIK1D/SRMajiMJpXZwHtyRdONQ2Fzx8GtlNynxMfXLaiEWLr+JEqIT0xXKdtr03WvOHyhDpNov2gw5mJB/UT/sKXJtTtI/yVevKpaZaKbjpdcL6kyjgmWE=
+#    file: target/travis-poc.jar
+#    skip_cleanup: true
+#    on:
+#      repo: sswainright/travis-poc
+#      all_branches: true
+#    name: POM_VERSION
+
+  - provider: script
+    script: sudo ./deployment/deploy-docker.sh
+    skip_cleanup: true
+    on:
+      all_branches: true
+
+  - provider: script
+    script: sudo ./deployment/deploy-dev.sh
+    skip_cleanup: true
+    on:
+      all_branches: true
+
+  - provider: script
+    script: sudo ./deployment/deploy-office.sh
+    skip_cleanup: true
+    on:
+      branch: master

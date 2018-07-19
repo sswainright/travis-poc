@@ -1,0 +1,27 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: travis-poc
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  template:
+    metadata:
+      labels:
+        app: travis-app
+    spec:
+      imagePullSecrets:
+        - name: awsecr-cred
+      containers:
+        - name: travis-app
+          #todo have build pipeline replace this
+          image: "{{ .Values.image }}"
+          imagePullPolicy: {{ .Values.deployment.imagePullPolicy }}
+
+          ports:
+            - name: api
+              containerPort: 8080
+            - name: admin
+              containerPort: 8081
+
+      restartPolicy: Always
